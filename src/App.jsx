@@ -8,6 +8,9 @@ import PrintSubmission from './components/PrintingSubmission';
 import CustomerLogin from './components/authentication/CustomerLogin';
 import AdminLogin from './components/authentication/OwnerSignIn'
 
+import Homepage from './components/Homepage';
+
+
 
 
 const router = createBrowserRouter(
@@ -15,8 +18,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       {/* for all paths starting with / */}
       <Route index element={<LandingPage />} />
+
       <Route path="userlogin" element={<CustomerLogin />} />
       <Route path="adminlogin" element={<AdminLogin />} />
+
+      <Route path="homepage" element={<Homepage />} />
+
       <Route path="print" element={<PrintingService />} />
       <Route path="print-submission" element={<PrintSubmission />} />
       <Route path="*" element={<NotFound />} />
