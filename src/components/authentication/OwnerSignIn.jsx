@@ -8,30 +8,28 @@ const CustomerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState(""); // State for role
   const [error, setError] = useState("");
   
   const navigate = useNavigate();  // Initialize the navigate function
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
+    setError("");  // Clear any previous error messages
 
-    if (!email || !password || (mode === "signup" && !name)) {
+    // Validate the form fields
+    if (!email || !password || (mode === "signup" && !name) || (mode === "signin" && !role)) {
       setError("Please fill in all fields");
       return;
     }
 
-    // Simulating sign-in and sign-up actions
+    // If mode is "signin", just navigate to /canteen page after validation
     if (mode === "signin") {
-      // Perform sign-in (replace this with your API call)
-      alert(`Signing In with email: ${email}`);
+      navigate("/canteen");
     } else {
-      // Perform sign-up (replace this with your API call)
+      // Handle sign-up (you can replace this with an actual API call)
       alert(`Signing Up with name: ${name}, email: ${email}`);
     }
-
-    // After sign-in or sign-up, navigate to the /print page
-    navigate("/print");
   };
 
   return (
@@ -101,6 +99,26 @@ const CustomerLogin = () => {
               />
             </div>
           </div>
+
+          {/* Role Dropdown (Sign In Only) */}
+          {mode === "signin" && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <div className="relative">
+                <select
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="w-full pl-3 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select Role</option>
+                  <option value="Canteen">Canteen</option>
+                  <option value="CC">CC</option>
+                </select>
+              </div>
+            </div>
+          )}
 
           {/* Error Message */}
           {error && <p className="text-red-500 text-sm">{error}</p>}
