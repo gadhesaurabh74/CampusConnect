@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React ,{ useState } from "react"
 import { Coffee, Search, Heart, Filter, ShoppingCart, X } from "lucide-react"
 
 const MENU_ITEMS = [
@@ -46,7 +46,7 @@ const MENU_ITEMS = [
 
 const categories = ["All", "Burgers", "Pizza", "Salads", "Wraps", "Drinks"]
 
-export default function CanteenService() {
+const CanteenService=()=> {
   const [cart, setCart] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -209,7 +209,7 @@ export default function CanteenService() {
               </div>
               <button
                 onClick={() => addToCart(item.id)}
-                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
+                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg bottom-1 hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
               >
                 Add to Cart
               </button>
@@ -284,4 +284,6 @@ export default function CanteenService() {
     </div>
   )
 }
+
+export default CanteenService
 
