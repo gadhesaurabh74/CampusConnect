@@ -4,7 +4,9 @@ import React from 'react'
 import NotFound from './components/NotFound';
 import LandingPage from './components/LandingPage';
 import PrintingService from './components/PrintingServices';
-import Heelo from './components/Heelo';
+import PrintSubmission from './components/PrintingSubmission';
+import CustomerLogin from './components/authentication/CustomerLogin';
+import AdminLogin from './components/authentication/OwnerSignIn'
 
 
 
@@ -13,7 +15,10 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       {/* for all paths starting with / */}
       <Route index element={<LandingPage />} />
-      <Route path="heelo" element={<Heelo/>}></Route>
+      <Route path="userlogin" element={<CustomerLogin />} />
+      <Route path="adminlogin" element={<AdminLogin />} />
+      <Route path="print" element={<PrintingService />} />
+      <Route path="print-submission" element={<PrintSubmission />} />
       <Route path="*" element={<NotFound />} />
       {/* for all unknown paths  */}
     </Route>

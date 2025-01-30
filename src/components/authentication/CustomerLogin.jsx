@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { X, Mail, Lock, User } from "lucide-react";
+import { Mail, Lock, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 
-export default function AuthModal({ onClose }) {
+const CustomerLogin = () => {
   const [mode, setMode] = useState("signin"); // Toggle between Sign In & Sign Up
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  
+  const navigate = useNavigate();  // Initialize the navigate function
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,29 +21,30 @@ export default function AuthModal({ onClose }) {
       return;
     }
 
-    // Handle authentication logic here (API call or state update)
-    alert(`${mode === "signin" ? "Signing In" : "Signing Up"}...`);
+    // Simulating sign-in and sign-up actions
+    if (mode === "signin") {
+      // Perform sign-in (replace this with your API call)
+      alert(`Signing In with email: ${email}`);
+    } else {
+      // Perform sign-up (replace this with your API call)
+      alert(`Signing Up with name: ${name}, email: ${email}`);
+    }
+
+    // After sign-in or sign-up, navigate to the /print page
+    navigate("/print");
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="flex justify-center items-center min-h-screen bg-gray-200 p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative"
+        className="bg-white shadow-lg rounded-xl p-6 max-w-md w-full"
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition"
-        >
-          <X className="h-6 w-6" />
-        </button>
-
         {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
-          {mode === "signin" ? "Welcome Back!" : "Create an Account"}
+        <h2 className="text-center text-3xl font-bold text-blue-600 mb-6">
+          Login as Student
         </h2>
 
         {/* Form */}
@@ -123,4 +127,6 @@ export default function AuthModal({ onClose }) {
       </motion.div>
     </div>
   );
-}
+};
+
+export default CustomerLogin;
