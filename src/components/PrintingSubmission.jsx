@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function PrintSubmission({ onNavigateToHome }) {
+const PrintSubmission=({ onNavigateToHome })=> {
   const [isPrintSubmitted, setIsPrintSubmitted] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState(null);
 
@@ -71,3 +71,5 @@ export default function PrintSubmission({ onNavigateToHome }) {
     </div>
   );
 }
+
+export default PrintSubmission;

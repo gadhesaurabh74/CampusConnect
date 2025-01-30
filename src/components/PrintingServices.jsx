@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Upload, Printer, FileText, Settings, Clock, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PrintingService=()=> {
   const [file, setFile] = useState(null);
@@ -188,7 +189,7 @@ const PrintingService=()=> {
             Total Cost: <span className="text-blue-600">${calculateCost()}</span>
           </div>
         </div>
-
+        <Link to="print-submission">
         <button
           type="submit"
           disabled={!file}
@@ -200,6 +201,7 @@ const PrintingService=()=> {
         >
           Submit Print Job
         </button>
+        </Link>
       </form>
 
       <div className="mt-8">

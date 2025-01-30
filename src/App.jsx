@@ -4,6 +4,7 @@ import React from 'react'
 import NotFound from './components/NotFound';
 import LandingPage from './components/LandingPage';
 import PrintingService from './components/PrintingServices';
+import PrintSubmission from './components/PrintingSubmission';
 
 
 
@@ -13,6 +14,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       {/* for all paths starting with / */}
       <Route index element={<LandingPage />} />
+      <Route path="print" element={<PrintingService />} />
+      <Route path="print-submission" element={<PrintSubmission />} />
       <Route path="*" element={<NotFound />} />
       {/* for all unknown paths  */}
     </Route>
