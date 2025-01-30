@@ -20,7 +20,7 @@ const MENU_ITEMS = [
     category: "Pizza",
     rating: 4.8,
     prepTime: "15-20 mins",
-    description: "Fresh mozzarella, tomatoes, and basil on our house-made crust",
+    description: "Fresh mozzarella, tomatoes, and basil on our house-made crust a",
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const MENU_ITEMS = [
     category: "Wraps",
     rating: 4.6,
     prepTime: "10-12 mins",
-    description: "Grilled chicken with fresh vegetables and chipotle sauce",
+    description: "Grilled chicken with fresh vegetables and chipotle sauce and yummy chicken",
   },
 ]
 
@@ -197,7 +197,7 @@ const CanteenService=()=> {
                 />
               </button>
             </div>
-            <div className="p-4">
+            <div className="p-4 h-[50%] bottom-0">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>
                 <span className="text-orange-600 font-bold">${item.price.toFixed(2)}</span>
@@ -209,7 +209,7 @@ const CanteenService=()=> {
               </div>
               <button
                 onClick={() => addToCart(item.id)}
-                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg bottom-1 hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
+                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg bottom-0 hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
               >
                 Add to Cart
               </button>

@@ -62,7 +62,7 @@ const CustomerLogin = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="John Doe"
+                  placeholder="Ram Mohan"
                 />
               </div>
             </div>

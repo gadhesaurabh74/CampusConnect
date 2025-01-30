@@ -14,10 +14,7 @@ const App=()=> {
       
       {(
         <div className="fixed top-20 right-4 max-w-md transform transition-all duration-500 ease-in-out animate-slide-in">
-          <div className="bg-white p-4 rounded-lg shadow-lg border-l-4 border-blue-500 flex items-center">
-            <Bell className="h-5 w-5 text-blue-500 mr-2" />
-            
-          </div>
+          
         </div>
       )}
 
