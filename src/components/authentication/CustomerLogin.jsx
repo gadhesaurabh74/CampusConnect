@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";  // Import useNavigate
+import axios from 'axios';
 
 const CustomerLogin = () => {
   const [mode, setMode] = useState("signin"); // Toggle between Sign In & Sign Up
@@ -12,9 +13,10 @@ const CustomerLogin = () => {
   
   const navigate = useNavigate();  // Initialize the navigate function
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setError("");
+    const response = await axios.post('http://localhost:3000/sign-up', { name:name, email:email, password:password });
 
     if (!email || !password || (mode === "signup" && !name)) {
       setError("Please fill in all fields");
@@ -31,7 +33,7 @@ const CustomerLogin = () => {
     }
 
     // After sign-in or sign-up, navigate to the /print page
-    navigate("/print");
+    navigate("/homepage");
   };
 
   return (
