@@ -1,15 +1,10 @@
 import React, { useState, useCallback } from 'react';
-<<<<<<< HEAD
+
 import { Upload, Printer, Settings, Clock } from 'lucide-react';
 import PrintSubmission from './PrintingSubmission'; // Import PrintSubmission
-
-export default function PrintingService() {
-=======
-import { Upload, Printer, FileText, Settings, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PrintingService = () => {
->>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
   const [file, setFile] = useState(null);
   const [copies, setCopies] = useState(1);
   const [isColor, setIsColor] = useState(false);
@@ -17,12 +12,12 @@ const PrintingService = () => {
   const [quality, setQuality] = useState('normal');
   const [isDragging, setIsDragging] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-<<<<<<< HEAD
+
   const [isPrintSubmitted, setIsPrintSubmitted] = useState(false); // State to control submission
   const [selectedPayment, setSelectedPayment] = useState(null);
-=======
+
   const [recentJobs, setRecentJobs] = useState([]); // Store recent print jobs
->>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
+
 
   const handleDragOver = useCallback((e) => {
     e.preventDefault();
@@ -47,14 +42,7 @@ const PrintingService = () => {
     return (baseCost * copies * qualityMultiplier).toFixed(2);
   };
 
-<<<<<<< HEAD
-  const handleSubmit = () => {
-    if (file) {
-      setIsPrintSubmitted(true); // Set to true to show the PrintSubmission component
-    } else {
-      alert('Please upload a file');
-    }
-  };
+
 
   const handlePaymentSelection = (method) => {
     setSelectedPayment(method); // Set the selected payment method
@@ -67,7 +55,7 @@ const PrintingService = () => {
     } else {
       alert('Please select a payment method');
     }
-=======
+  }
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +69,7 @@ const PrintingService = () => {
 
     // Reset file input
     setFile(null);
->>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
+
   };
 
   return (
@@ -95,11 +83,7 @@ const PrintingService = () => {
           </div>
         </div>
         <button
-<<<<<<< HEAD
-          onClick={() => setShowAdvanced(!showAdvanced)} 
-=======
           onClick={() => setShowAdvanced(!showAdvanced)}
->>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
           className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
         >
           <Settings className="h-5 w-5 mr-2" />
@@ -107,124 +91,6 @@ const PrintingService = () => {
         </button>
       </div>
 
-<<<<<<< HEAD
-      {!isPrintSubmitted ? (
-        <form className="space-y-6">
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 ${
-              isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'
-            }`}
-          >
-            <input
-              type="file"
-              onChange={(e) => e.target.files?.[0] && setFile(e.target.files[0])}
-              className="hidden"
-              id="file-upload"
-              accept=".pdf,.doc,.docx"
-            />
-            <label
-              htmlFor="file-upload"
-              className="cursor-pointer flex flex-col items-center"
-            >
-              <Upload className={`h-16 w-16 mb-4 transition-colors duration-300 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
-              <span className="text-lg text-gray-600 mb-2">
-                {file ? file.name : 'Drop your file here or click to browse'}
-              </span>
-              <span className="text-sm text-gray-500">
-                Supports PDF, DOC, DOCX (Max 50MB)
-              </span>
-            </label>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Number of Copies
-              </label>
-              <div className="flex items-center">
-                <button
-                  type="button"
-                  onClick={() => copies > 1 && setCopies(copies - 1)}
-                  className="px-3 py-2 border border-gray-300 rounded-l-md hover:bg-gray-50"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="1"
-                  value={copies}
-                  onChange={(e) => setCopies(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-20 text-center border-y border-gray-300 py-2"
-                />
-                <button
-                  type="button"
-                  onClick={() => setCopies(copies + 1)}
-                  className="px-3 py-2 border border-gray-300 rounded-r-md hover:bg-gray-50"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Color Options
-              </label>
-              <div className="flex space-x-4">
-                <button
-                  type="button"
-                  onClick={() => setIsColor(false)}
-                  className={`flex-1 py-2 px-4 rounded-md border ${
-                    !isColor ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  B&W
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsColor(true)}
-                  className={`flex-1 py-2 px-4 rounded-md border ${
-                    isColor ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  Color
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-center text-gray-600">
-              <Clock className="h-5 w-5 mr-2" />
-              <span>Estimated time: 5-10 minutes</span>
-            </div>
-            <div className="text-lg font-semibold">
-              Total Cost: <span className="text-blue-600">${calculateCost()}</span>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={!file}
-            className={`w-full py-3 px-4 rounded-lg text-white text-lg font-medium transition-all duration-300 ${
-              file ? 'bg-blue-600 hover:bg-blue-700 transform hover:scale-[1.02]' : 'bg-gray-400 cursor-not-allowed'
-            }`}
-          >
-            Submit Print Job
-          </button>
-        </form>
-      ) : (
-        // Show PrintSubmission component after the print job is submitted
-        <PrintSubmission onNavigateToHome={() => setIsPrintSubmitted(false)} />
-      )}
-    </div>
-  );
-}
-=======
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div
           onDragOver={handleDragOver}
@@ -335,4 +201,4 @@ const PrintingService = () => {
 };
 
 export default PrintingService;
->>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
+

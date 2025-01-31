@@ -24,9 +24,13 @@ const CustomerLogin = () => {
     }
 
     // If mode is "signin", just navigate to /canteen page after validation
-    if (mode === "signin") {
+    if (mode === "signin" && role==="Canteen") {
       navigate("/canteen");
-    } else {
+    }
+    else if(mode === "signin" && role==="CC"){
+      navigate("/CC");
+    }
+     else {
       // Handle sign-up (you can replace this with an actual API call)
       alert(`Signing Up with name: ${name}, email: ${email}`);
     }
