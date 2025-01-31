@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import PrintingService from './PrintingServices'; // Import the PrintingService component
+import CanteenService from './CanteenServices';
 
 const Heelo = () => {
   return (
     <div>
-      hello
+      
+      <PrintingService /> {/* This renders the PrintingService component */}
+      <CanteenService /> 
     </div>
-  )
-}
+  );
+};
 
-export default Heelo
-
+export default Heelo;

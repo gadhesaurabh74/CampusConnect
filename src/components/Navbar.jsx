@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Bell, User, LogOut, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 export default function Navbar({ user, onLogout }) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -12,8 +13,22 @@ export default function Navbar({ user, onLogout }) {
             <Menu className="h-6 w-6 text-gray-600" />
             <span className="ml-3 text-xl font-semibold text-gray-800">CampusConnect</span>
           </div>
-          
+
           <div className="flex items-center space-x-4">
+            {/* Navigation Link to Printing Service */}
+            <Link to="/printing-service">
+              <button className="p-2 rounded-full hover:bg-gray-100">
+                Printing Service
+              </button>
+            </Link>
+
+            {/* Navigation Link to Canteen Services */}
+            <Link to="/canteen-services">
+              <button className="p-2 rounded-full hover:bg-gray-100">
+                Canteen Services
+              </button>
+            </Link>
+
             <button className="p-2 rounded-full hover:bg-gray-100 relative">
               <Bell className="h-6 w-6 text-gray-600" />
               {/* Conditionally show the notification bubble */}
@@ -21,7 +36,7 @@ export default function Navbar({ user, onLogout }) {
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
               )}
             </button>
-            
+
             <div className="relative">
               <button
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
