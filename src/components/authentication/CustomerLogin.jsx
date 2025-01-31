@@ -1,39 +1,37 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock, User } from "lucide-react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
+import { Mail, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const CustomerLogin = () => {
-  const [mode, setMode] = useState("signin"); // Toggle between Sign In & Sign Up
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [error, setError] = useState("");
   
-  const navigate = useNavigate();  // Initialize the navigate function
+  const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const response = await axios.post('http://localhost:3000/sign-up', { name:name, email:email, password:password });
 
-    if (!email || !password || (mode === "signup" && !name)) {
+    if (!email || !password) {
       setError("Please fill in all fields");
       return;
     }
 
-    // Simulating sign-in and sign-up actions
-    if (mode === "signin") {
-      // Perform sign-in (replace this with your API call)
-      alert(`Signing In with email: ${email}`);
-    } else {
-      // Perform sign-up (replace this with your API call)
-      alert(`Signing Up with name: ${name}, email: ${email}`);
-    }
+    try {
+      const response = await axios.post('http://localhost:3000/login', { email, password });
 
-    // After sign-in or sign-up, navigate to the /print page
-    navigate("/homepage");
+      if (response.data.success) {
+        alert("Login successful!");
+        navigate("/print");  // Redirect to print page after login
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (error) {
+      setError("Error logging in. Please try again.");
+    }
   };
 
   return (
@@ -44,32 +42,11 @@ const CustomerLogin = () => {
         exit={{ opacity: 0, scale: 0.9 }}
         className="bg-white shadow-lg rounded-xl p-6 max-w-md w-full"
       >
-        {/* Title */}
         <h2 className="text-center text-3xl font-bold text-blue-600 mb-6">
-          Login as Student
+          Customer Login
         </h2>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Input (Signup Only) */}
-          {mode === "signup" && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="Ram Mohan"
-                />
-              </div>
-            </div>
-          )}
-
           {/* Email Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -104,26 +81,23 @@ const CustomerLogin = () => {
             </div>
           </div>
 
-          {/* Error Message */}
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
           >
-            {mode === "signin" ? "Sign In" : "Create Account"}
+            Sign In
           </button>
         </form>
 
-        {/* Toggle Between Sign In & Sign Up */}
         <p className="text-sm text-center mt-4">
-          {mode === "signin" ? "New here?" : "Already have an account?"}{" "}
+          New here?{" "}
           <button
-            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
+            onClick={() => navigate("/userregister")}
             className="text-blue-600 font-semibold hover:underline"
           >
-            {mode === "signin" ? "Sign Up" : "Sign In"}
+            Sign Up
           </button>
         </p>
       </motion.div>

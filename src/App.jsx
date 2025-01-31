@@ -7,7 +7,9 @@ import PrintingService from './components/PrintingServices'; // Import the Print
 import CanteenServices from './components/CanteenServices'; // Import the CanteenServices component
 import PrintSubmission from './components/PrintingSubmission';
 import CustomerLogin from './components/authentication/CustomerLogin';
+import CustomerRegister from './components/authentication/CustomerRegister';
 import AdminLogin from './components/authentication/OwnerSignIn';
+import AdminRegister from './components/authentication/OwnerRegister'
 import Homepage from './components/Homepage';
 import Dashboard from './components/owner/dashboard';
 import Canteen from './components/owner/Canteen/Canteen';
@@ -26,7 +28,9 @@ const router = createBrowserRouter(
 
 
       <Route path="userlogin" element={<CustomerLogin />} />
+      <Route path="userregister" element={<CustomerRegister />} />
       <Route path="adminlogin" element={<AdminLogin />} />
+      <Route path="adminregister" element={<AdminRegister />} />
 
       <Route path="homepage" element={<Homepage />} />
       <Route path="dashboard" element={<Dashboard />} />

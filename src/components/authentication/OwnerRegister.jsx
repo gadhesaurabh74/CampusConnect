@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom"; 
+import { Mail, Lock, User } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
 
-const OwnerLogin = () => {
+const OwnerRegister = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(""); // Role selection
   const [error, setError] = useState("");
 
   const navigate = useNavigate(); 
@@ -15,17 +15,14 @@ const OwnerLogin = () => {
     e.preventDefault();
     setError("");
 
-    if (!email || !password || !role) {
+    if (!name || !email || !password) {
       setError("Please fill in all fields");
       return;
     }
 
-    // Navigate based on role selection
-    if (role === "Canteen") {
-      navigate("/canteen");
-    } else if (role === "CC") {
-      navigate("/CC");
-    }
+    // Handle signup logic (API call or local storage)
+    alert(`Signing Up with Name: ${name}, Email: ${email}`);
+    navigate("/login");
   };
 
   return (
@@ -37,10 +34,27 @@ const OwnerLogin = () => {
         className="bg-white shadow-lg rounded-xl p-6 max-w-md w-full"
       >
         <h2 className="text-center text-3xl font-bold text-blue-600 mb-6">
-          Owner Login
+          Owner Sign Up
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Full Name
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="John Doe"
+              />
+            </div>
+          </div>
+
           {/* Email Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -75,24 +89,6 @@ const OwnerLogin = () => {
             </div>
           </div>
 
-          {/* Role Dropdown */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Role
-            </label>
-            <div className="relative">
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full pl-3 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select Role</option>
-                <option value="Canteen">Canteen</option>
-                <option value="CC">CC</option>
-              </select>
-            </div>
-          </div>
-
           {/* Error Message */}
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
@@ -101,18 +97,15 @@ const OwnerLogin = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
           >
-            Sign In
+            Sign Up
           </button>
         </form>
 
-        {/* Navigate to Sign Up */}
+        {/* Navigate to Sign In */}
         <p className="text-sm text-center mt-4">
-          New here?{" "}
-          <Link
-            to="/adminregister"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Sign Up
+          Already have an account?{" "}
+          <Link to="/adminlogin" className="text-blue-600 font-semibold hover:underline">
+            Sign In
           </Link>
         </p>
       </motion.div>
@@ -120,4 +113,4 @@ const OwnerLogin = () => {
   );
 };
 
-export default OwnerLogin;
+export default OwnerRegister;
