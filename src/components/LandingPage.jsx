@@ -72,12 +72,14 @@ export default function LandingPage() {
               Your all-in-one platform for campus services
             </p>
             <div className="flex justify-center space-x-4">
+                <Link to="/adminlogin">
               <button
                 className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transform hover:scale-105 transition-all duration-300"
               >
                  Get Started As Service Provider
               </button>
-              <Link to='/heelo'>
+                </Link>
+              <Link to='/userlogin'>
               <button
                 className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
               >

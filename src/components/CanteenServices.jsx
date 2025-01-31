@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { Coffee, Search, Heart, Filter, ShoppingCart, X } from "lucide-react";
+=======
+import React ,{ useState } from "react"
+import { Coffee, Search, Heart, Filter, ShoppingCart, X } from "lucide-react"
+>>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
 
 // Mock data for menu items
 const MENU_ITEMS = [
@@ -20,8 +25,13 @@ const MENU_ITEMS = [
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&h=200",
     category: "Pizza",
     rating: 4.8,
+<<<<<<< HEAD
     prepTime: "12-15 mins",
     description: "Fresh mozzarella, tomatoes, and basil on our house-made crust",
+=======
+    prepTime: "15-20 mins",
+    description: "Fresh mozzarella, tomatoes, and basil on our house-made crust a",
+>>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
   },
   {
     id: 3,
@@ -41,7 +51,7 @@ const MENU_ITEMS = [
     category: "Wraps",
     rating: 4.6,
     prepTime: "10-12 mins",
-    description: "Grilled chicken with fresh vegetables and chipotle sauce",
+    description: "Grilled chicken with fresh vegetables and chipotle sauce and yummy chicken",
   },
   {
     id: 5,
@@ -157,6 +167,7 @@ const MENU_ITEMS = [
 // Categories for filtering
 const categories = ["All", "Burgers", "Pizza", "Salads", "Wraps", "Drinks"];
 
+<<<<<<< HEAD
 export default function CanteenService() {
   const [cart, setCart] = useState([]); // Cart state
   const [searchQuery, setSearchQuery] = useState(""); // Search query state
@@ -170,6 +181,17 @@ export default function CanteenService() {
   const [showPaymentOptions, setShowPaymentOptions] = useState(false); // Payment options visibility state
   const [selectedPayment, setSelectedPayment] = useState(null); // Selected payment method state
   const [selectedUPI, setSelectedUPI] = useState(null); // Selected UPI method state
+=======
+const CanteenService=()=> {
+  const [cart, setCart] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [showFilters, setShowFilters] = useState(false)
+  const [sortBy, setSortBy] = useState("rating")
+  const [favorites, setFavorites] = useState([])
+  const [showCart, setShowCart] = useState(false)
+  const [notification, setNotification] = useState(null)
+>>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
 
   // Add item to cart
   const addToCart = (itemId) => {
@@ -433,7 +455,7 @@ export default function CanteenService() {
                 />
               </button>
             </div>
-            <div className="p-4">
+            <div className="p-4 h-[50%] bottom-0">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-lg font-medium text-gray-800">{item.name}</h3>
                 <span className="text-orange-600 font-bold">${item.price.toFixed(2)}</span>
@@ -445,7 +467,7 @@ export default function CanteenService() {
               </div>
               <button
                 onClick={() => addToCart(item.id)}
-                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
+                className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg bottom-0 hover:bg-orange-700 transform hover:scale-[1.02] transition-all duration-300"
               >
                 Add to Cart
               </button>
@@ -630,5 +652,13 @@ export default function CanteenService() {
         </div>
       )}
     </div>
+<<<<<<< HEAD
   );
 }
+=======
+  )
+}
+
+export default CanteenService
+
+>>>>>>> 08109f8be5dcb901ed8a34b189426b13eef99cb6
